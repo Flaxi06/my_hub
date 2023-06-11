@@ -1,0 +1,27 @@
+# from gtts import gTTS
+
+# f = open ("test.txt","r", encoding="utf-8")
+# text = f.read()
+# print(text)
+# f.close()
+
+# tts = gTTS(text = text, lang = "ru")
+# tts.save("love.mp3")
+
+import speech_recognition as sr 
+spisok = ["привет", "здарова " , "хеллооу"]
+recognizer = sr.Recognizer()
+
+while True:
+    with sr.Microphone(device_index=1) as source:
+        print("скажите что-нибудь...")
+
+        speech = recognizer.listen(source)
+
+        speech_to_text = recognizer.recognize_google(speech,language="ru_RU")
+        
+        print(f"Вы сказали : {speech_to_text}")
+
+        if speech_to_text.lower()== "привет":
+            a = random.choice(spisok)
+            print(a)
